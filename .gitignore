@@ -1,0 +1,28 @@
+# Python virtual environments
+venv/
+env/
+.venv/
+
+# Compiled files
+__pycache__/
+*.py[cod]
+
+# IDE & system files
+*.swp
+.DS_Store
+*.sublime*
+.vscode/
+.idea/
+
+# Logs / dumps
+*.log
+
+# Ignore test cache
+.pytest_cache/
+
+# Pygame
+*.pyo
+
+# Mac / Windows
+Thumbs.db
+ehthumbs.db

@@ -1,0 +1,48 @@
+import pygame
+from config import BLOCK_SIZE, SW, SH
+
+class Snake:
+    def __init__(self):
+        self.x, self.y = BLOCK_SIZE, BLOCK_SIZE
+        self.xdir = 1
+        self.ydir = 0
+        self.head = pygame.Rect(self.x, self.y, BLOCK_SIZE, BLOCK_SIZE)
+        self.body = [pygame.Rect(self.x - BLOCK_SIZE, self.y, BLOCK_SIZE, BLOCK_SIZE)]
+        self.dead = False
+        self.rotten_penalty = 1  # câte segmente pierde la următorul rotten
+
+    def reset(self):
+        self.__init__()
+
+    def update(self):
+        for square in self.body:
+            if self.head.colliderect(square):
+                self.dead = True
+        if self.head.x not in range(0, SW) or self.head.y not in range(0, SH):
+            self.dead = True
+
+        if not self.dead:
+            self.body.append(self.head.copy())
+            for i in range(len(self.body)-1):
+                self.body[i].x, self.body[i].y = self.body[i+1].x, self.body[i+1].y
+            self.head.x += self.xdir * BLOCK_SIZE
+            self.head.y += self.ydir * BLOCK_SIZE
+            if self.body:
+                self.body.pop()
+
+
+    def grow(self):
+        if self.body:
+            last = self.body[-1]
+        else:
+            last = self.head
+        self.body.append(pygame.Rect(last.x, last.y, BLOCK_SIZE, BLOCK_SIZE))
+
+    def shrink(self, amount):
+        for _ in range(amount):
+            if self.body:
+                self.body.pop(0)
+        # dacă rămâne fără corp, moare
+        if len(self.body) < 1:
+            self.dead = True
+
