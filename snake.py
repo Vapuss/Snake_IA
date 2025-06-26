@@ -10,6 +10,15 @@ class Snake:
         self.body = [pygame.Rect(self.x - BLOCK_SIZE, self.y, BLOCK_SIZE, BLOCK_SIZE)]
         self.dead = False
         self.rotten_penalty = 1  # câte segmente pierde la următorul rotten
+        self.score = 0
+        self.kills = 0
+        self.rotten_count = 0
+
+        self.fruit_streak = 0  # Inițializare streak de mere
+        self.last_apple_type = None  # Ținem minte ce tip de măr a fost ultimul consumat
+        
+    def reset_streak(self):
+        self.fruit_streak = 0  # Resetăm streak-ul când mănâncă un rotten apple
 
     def reset(self):
         self.__init__()

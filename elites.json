@@ -1,0 +1,28 @@
+[
+  {
+    "avoid_walls": 0.10794121335010336,
+    "avoid_body": 0.2076009757774659,
+    "chase_food": 0.3447233163330289,
+    "stay_centered": 0.0,
+    "avoid_snakes": 0.05951061473821254,
+    "hunt_snakes": 0.025960339557253825,
+    "prefer_corners": 0.0,
+    "fear_poison": 0.268399350314889,
+    "risk_loving": 9.212131349284585e-07,
+    "patience": 0.001349969094675055,
+    "hunter_mode": 0.03451329962123643
+  },
+  {
+    "avoid_walls": 0.11022716688741718,
+    "avoid_body": 0.24779989919243117,
+    "chase_food": 0.24498319312445588,
+    "stay_centered": 0.0,
+    "avoid_snakes": 0.04515666681804104,
+    "hunt_snakes": 0.012699156309053045,
+    "prefer_corners": 0.0,
+    "fear_poison": 0.24424688590545632,
+    "risk_loving": 1.1233805112583125e-06,
+    "patience": 0.0016462302959637657,
+    "hunter_mode": 0.09323967808667057
+  }
+]
