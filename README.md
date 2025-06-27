@@ -72,11 +72,14 @@ Un joc de tip Snake cu AI evolutiv, folosind algoritmi genetici pentru a crea ș
    În modul **solo** sau **AI cu jucător**, tu controlezi șarpele folosind săgețile direcționale. Șarpele se mișcă într-o direcție și continuă până când întâlnește un obstacol (perete, corpul său sau alt șarpe).
    
 2. **Merele**:
-   - **Mere normale**: Consumă mere normale pentru a-ți crește lungimea corpului și scorul. Fiecare măr adaugă 1 punct la scorul tău și crește corpul șarpelui.
+
+   În joc există trei tipuri de mere, toate având inițial culoarea roșie, pentru a nu trăda natura lor reală. Cu toate acestea, șerpii pot detecta tipul mărului atunci când se apropie suficient:
+
+   - **Mere normale**: Consumă mere normale pentru a-ți crește lungimea corpului și scorul. Fiecare măr oferă 2 puncte și adaugă un segment corpului șarpelui. Dacă mănânci mere în mod consecutiv, activezi un mecanism de streak: primești câte 2 puncte suplimentare la fiecare două mere consecutive, până la un maxim de 20 de puncte per măr (la 10 mere consecutive).
    
-   - **Mere putrezite**: Merele putrezite sunt periculoase și te penalizează. Dacă mănânci un astfel de măr, corpul tău va scădea și vei pierde segmente. De asemenea, vei reseta streak-ul de mere consumate consecutiv.
+   - **Mere putrezite**: Merele putrezite sunt periculoase și te penalizează. Dacă mănânci un astfel de măr, corpul tău va scădea și vei pierde segmente. De asemenea, streak-ul activ se resetează complet. Aceste mere sunt de culoare roșie la distanță, dar devin maro când un șarpe se află la o distanță de cel mult 2 blocuri.
    
-   - **Mere otravite**: Dacă mănânci un măr otrăvit, pierzi 5 puncte din scor și, dacă ai un corp mai mare de 15 segmente, șarpele tău moare.
+   - **Mere otravite**: Dacă mănânci un măr otrăvit, pierzi 5 puncte din scor. În plus, dacă ai un corp mai mare de 15 segmente, șarpele tău moare instant. La fel ca celelalte, par roșii de la distanță, dar devin mov când un șarpe se află la o distanță de cel mult 2 blocuri.
 
 3. **Coliziuni cu alți șerpi**:
    - Dacă un șarpe intră cu capul în corpul altui șarpe, se va întâmpla o **coliziune**.  

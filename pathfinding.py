@@ -1,5 +1,6 @@
 import heapq
-from config import BLOCK_SIZE, SW, SH
+from config import SW, SH
+import config
 
 DIRECTIONS = {
     "UP": (0, -1),
@@ -16,8 +17,8 @@ def a_star(start, goal, obstacles, grid_width=None, grid_height=None):
     obstacles: set of (x, y) positions that are blocked
     grid_width, grid_height: optional grid dimensions, inferred from config if None
     """
-    grid_width = grid_width or (SW // BLOCK_SIZE)
-    grid_height = grid_height or (SH // BLOCK_SIZE)
+    grid_width = grid_width or (SW // config.BLOCK_SIZE)
+    grid_height = grid_height or (SH // config.BLOCK_SIZE)
 
     def in_bounds(pos):
         x, y = pos

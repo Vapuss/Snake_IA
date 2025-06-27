@@ -5,21 +5,22 @@ import time
 
 pygame.init()
 
-from config import SW, SH, BLOCK_SIZE, player_name
+from config import SW, SH, player_name
 from apple import NormalApple, RottenApple, PoisonousApple
 from snake import Snake
 from snake_ai import SnakeAI
 from population import PopulationManager
 from utils import manhattan_dist
 from button import Button
-from settings_manager import load_settings, get_snake_speed
+from settings_manager import load_settings, get_snake_speed, get_block_size
 import config
 
 BG_PAUSE = pygame.image.load("assets/overlay_pause.png")
 BG_PAUSE = pygame.transform.scale(BG_PAUSE, (SW, SH))
 
 
-FONT = pygame.font.Font("arial.ttf", BLOCK_SIZE * 2)
+
+FONT = pygame.font.Font("arial.ttf", config.BLOCK_SIZE * 2)
 UI_FONT = pygame.font.Font("arial.ttf", 50)
 TITLE_FONT = pygame.font.Font("arial.ttf", 100)
 
@@ -32,9 +33,9 @@ def spawn_apple(apples, snake, cls):
     apples.append(cls(get_occupied_positions(snake)))
 
 def draw_grid(screen):
-    for x in range(0, SW, BLOCK_SIZE):
-        for y in range(0, SH, BLOCK_SIZE):
-            rect = pygame.Rect(x, y, BLOCK_SIZE, BLOCK_SIZE)
+    for x in range(0, SW, config.BLOCK_SIZE):
+        for y in range(0, SH, config.BLOCK_SIZE):
+            rect = pygame.Rect(x, y, config.BLOCK_SIZE, config.BLOCK_SIZE)
             pygame.draw.rect(screen, "#3c3c3b", rect, 1)
 
 
@@ -202,7 +203,7 @@ def start_game(screen):
     pop_manager = None  # populația AI
 
 
-    HEADSTART_DURATION = 10  # secunde
+    
     headstart_start_time = time.time()
 
     # === Setup snakes ===
@@ -249,10 +250,19 @@ def start_game(screen):
     last_rotten_spawn = time.time()
     last_poisonous_spawn = time.time()
     last_normal_spawn = time.time()
-    ROTTEN_INTERVAL = 5
-    POISONOUS_INTERVAL_MIN = 10
-    POISONOUS_INTERVAL_MAX = 30
-    NORMAL_SPAWN_INTERVAL = 5
+    
+    
+
+    if config.BLOCK_SIZE <= 30:
+        NORMAL_SPAWN_INTERVAL = 2  # small block size → spawn rapid
+        ROTTEN_INTERVAL = 2
+        POISONOUS_INTERVAL_MIN = 5
+        POISONOUS_INTERVAL_MAX = 10
+    else:
+        NORMAL_SPAWN_INTERVAL = 5
+        ROTTEN_INTERVAL = 5
+        POISONOUS_INTERVAL_MIN = 10
+        POISONOUS_INTERVAL_MAX = 30
     next_poisonous_spawn = random.randint(POISONOUS_INTERVAL_MIN, POISONOUS_INTERVAL_MAX)
 
     while True:
@@ -344,7 +354,7 @@ def start_game(screen):
 
                             for _ in range(clone_len - 1):
                                 block = challenger.head.copy()
-                                block.x += BLOCK_SIZE
+                                block.x += config.BLOCK_SIZE
                                 challenger.body.append(block)
 
                             # 💡 scor inițial proporțional cu dimensiune și scorul sarpelui dominant
@@ -500,7 +510,7 @@ def start_game(screen):
                 screen.blit(go_text, go_text.get_rect(center=(SW // 2, 80)))
 
         for apple in apples:
-            reference_head = snakes[0].head if snakes else pygame.Rect(0, 0, BLOCK_SIZE, BLOCK_SIZE)
+            reference_head = snakes[0].head if snakes else pygame.Rect(0, 0, config.BLOCK_SIZE, config.BLOCK_SIZE)
             alive_snakes = [s for s in snakes if not s.dead]
 
             if alive_snakes:
@@ -525,7 +535,7 @@ def start_game(screen):
 
             if snake.body:
                 tail = snake.body[0]
-                tail_surface = pygame.Surface((BLOCK_SIZE, BLOCK_SIZE), pygame.SRCALPHA)
+                tail_surface = pygame.Surface((config.BLOCK_SIZE, config.BLOCK_SIZE), pygame.SRCALPHA)
                 tail_surface.fill((0, 100, 0, 100))  # efect de fade pe coadă
                 screen.blit(tail_surface, (tail.x, tail.y))
 

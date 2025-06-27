@@ -1,18 +1,22 @@
 import pygame
 import random
 import time
+import config
 
 from config import *
 from utils import manhattan_dist
 
+
+
+
 class AppleBase:
     def __init__(self, occupied):
         while True:
-            self.x = random.randint(0, SW // BLOCK_SIZE - 1) * BLOCK_SIZE
-            self.y = random.randint(0, SH // BLOCK_SIZE - 1) * BLOCK_SIZE
+            self.x = random.randint(0, SW // config.BLOCK_SIZE - 1) * config.BLOCK_SIZE
+            self.y = random.randint(0, SH // config.BLOCK_SIZE - 1) * config.BLOCK_SIZE
             if (self.x, self.y) not in occupied:
                 break
-        self.rect = pygame.Rect(self.x, self.y, BLOCK_SIZE, BLOCK_SIZE)
+        self.rect = pygame.Rect(self.x, self.y, config.BLOCK_SIZE, config.BLOCK_SIZE)
         self.spawn_time = time.time()
         self.alpha = 255
 
@@ -28,7 +32,7 @@ class AppleBase:
     def draw(self, screen, snake_head):
         if snake_head is None:
             return
-        surface = pygame.Surface((BLOCK_SIZE, BLOCK_SIZE), pygame.SRCALPHA)
+        surface = pygame.Surface((config.BLOCK_SIZE, config.BLOCK_SIZE), pygame.SRCALPHA)
         color = self.get_color(snake_head)
         alpha = self.fading()
         surface.fill((*color, alpha))
@@ -36,8 +40,8 @@ class AppleBase:
 
     def get_color(self, snake_head):
         # convertim în coordonate de grid
-        head_pos = (snake_head.x // BLOCK_SIZE, snake_head.y // BLOCK_SIZE)
-        apple_pos = (self.rect.x // BLOCK_SIZE, self.rect.y // BLOCK_SIZE)
+        head_pos = (snake_head.x // config.BLOCK_SIZE, snake_head.y // config.BLOCK_SIZE)
+        apple_pos = (self.rect.x // config.BLOCK_SIZE, self.rect.y // config.BLOCK_SIZE)
         dist = manhattan_dist(head_pos, apple_pos)
         return self.warn_color if dist <= 3 else self.base_color
 

@@ -76,13 +76,14 @@ def options_menu():
     font = get_font(40)
     label_font = get_font(36)
 
-    from settings_manager import get_ai_snake_count, get_headstart_duration, get_challengers_enabled, get_snake_speed, get_ai_only_snake_count
+    from settings_manager import get_ai_snake_count, get_headstart_duration, get_challengers_enabled, get_snake_speed, get_ai_only_snake_count, get_block_size
 
     ai_snake_count = get_ai_snake_count()
     ai_battle_snake_count  = get_ai_only_snake_count()
     headstart_duration = get_headstart_duration()
     challengers_enabled = get_challengers_enabled()
     snake_speed = get_snake_speed()
+    block_size = get_block_size()
     snake_speed_min = 1
     snake_speed_max = 30
 
@@ -97,7 +98,8 @@ def options_menu():
     }
     current_index = game_types.index(config.GAME_TYPE)
 
-    
+    block_sizes = [30, 50, 65]
+    current_block_index = block_sizes.index(config.BLOCK_SIZE)
     
 
 
@@ -227,6 +229,28 @@ def options_menu():
                 b.update(SCREEN)
 
 
+
+        # === Block Size selector ===
+        
+        label_y_block = label_y_speed + 400
+        SCREEN.blit(label_font.render("Block Size", True, "white"), (label_x, label_y_block))
+
+        block_y = speed_y + 400
+        block_left_arrow = Button(None, (input_box.x - 15, block_y), "<", get_font(50), "white", "#7ad47a")
+        block_right_arrow = Button(None, (input_box.x + 335, block_y), ">", get_font(50), "white", "#7ad47a")
+
+        block_text = get_font(35).render(
+            f"{'Small' if block_sizes[current_block_index]==30 else 'Medium' if block_sizes[current_block_index]==50 else 'Large'} ({block_sizes[current_block_index]})",
+            True, "#40c0e0"
+        )
+        SCREEN.blit(block_text, block_text.get_rect(center=(input_box.x + 160, block_y)))
+
+        for arrow in [block_left_arrow, block_right_arrow]:
+            arrow.change_color(OPTIONS_MOUSE_POS)
+            arrow.update(SCREEN)
+
+
+
         # === Buton Back colț dreapta jos ===
         back_button = Button(
             image=None,
@@ -269,6 +293,8 @@ def options_menu():
                         snake_speed += 1
                         config.SNAKE_SPEED = snake_speed
 
+                
+
 
 
                 if back_button.check_for_input(OPTIONS_MOUSE_POS):
@@ -280,11 +306,21 @@ def options_menu():
                         "headstart_duration": headstart_duration,
                         "challengers_enabled": challengers_enabled,
                         "snake_speed": snake_speed,
-                        "ai_only_snake_count": ai_battle_snake_count
+                        "ai_only_snake_count": ai_battle_snake_count,
+                        "block_size": config.BLOCK_SIZE
                     }
                     save_full_settings(settings_to_save)
                     return
                 
+
+                if block_left_arrow and block_left_arrow.check_for_input(OPTIONS_MOUSE_POS):
+                    current_block_index = (current_block_index - 1) % len(block_sizes)
+                    config.BLOCK_SIZE = block_sizes[current_block_index]
+
+                if block_right_arrow and block_right_arrow.check_for_input(OPTIONS_MOUSE_POS):
+                    current_block_index = (current_block_index + 1) % len(block_sizes)
+                    config.BLOCK_SIZE = block_sizes[current_block_index]
+
                 if game_types[current_index] == "ai_only":
                     if toggle_on and toggle_on.check_for_input(OPTIONS_MOUSE_POS):
                         challengers_enabled = True

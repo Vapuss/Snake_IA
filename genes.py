@@ -2,7 +2,9 @@
 
 import random
 import math
-from config import SW, SH, BLOCK_SIZE
+import config
+
+from config import SW, SH
 
 # Direcțiile posibile: sus, jos, stânga, dreapta
 DIRECTIONS = {
@@ -67,7 +69,7 @@ def avoid_walls(state, direction):
     dx, dy = DIRECTIONS[direction]
     new_x = head[0] + dx
     new_y = head[1] + dy
-    if not (0 <= new_x < SW // BLOCK_SIZE and 0 <= new_y < SH // BLOCK_SIZE):
+    if not (0 <= new_x < SW // config.BLOCK_SIZE and 0 <= new_y < SH // config.BLOCK_SIZE):
         return -10  # perete
     return 0
 
@@ -102,7 +104,7 @@ def chase_food(state, direction):
 
 def stay_centered(state, direction):
     head = state["head"]
-    center = (SW // BLOCK_SIZE // 2, SH // BLOCK_SIZE // 2)
+    center = (SW // config.BLOCK_SIZE // 2, SH // config.BLOCK_SIZE // 2)
     dx, dy = DIRECTIONS[direction]
     new_pos = (head[0] + dx, head[1] + dy)
     dist = abs(center[0] - new_pos[0]) + abs(center[1] - new_pos[1])
@@ -158,7 +160,7 @@ def hunt_snakes(state, direction):
 
 
 def prefer_corners(state, direction):
-    corners = [(0,0), (SW // BLOCK_SIZE - 1, 0), (0, SH // BLOCK_SIZE - 1), (SW // BLOCK_SIZE - 1, SH // BLOCK_SIZE - 1)]
+    corners = [(0,0), (SW // config.BLOCK_SIZE - 1, 0), (0, SH // config.BLOCK_SIZE - 1), (SW // config.BLOCK_SIZE - 1, SH // config.BLOCK_SIZE - 1)]
     head = state["head"]
     dx, dy = DIRECTIONS[direction]
     new_pos = (head[0] + dx, head[1] + dy)
@@ -188,7 +190,7 @@ def risk_loving(state, direction):
     open_space = 0
     for ddx, ddy in [(-1,0), (1,0), (0,-1), (0,1)]:
         nx, ny = new_pos[0] + ddx, new_pos[1] + ddy
-        if (0 <= nx < SW // BLOCK_SIZE) and (0 <= ny < SH // BLOCK_SIZE):
+        if (0 <= nx < SW // config.BLOCK_SIZE) and (0 <= ny < SH // config.BLOCK_SIZE):
             if (nx, ny) not in body:
                 open_space += 1
     return open_space - 2  # pozitiv dacă spațiu mare

@@ -1,13 +1,16 @@
 import pygame
-from config import BLOCK_SIZE, SW, SH
+import config
+
+from config import  SW, SH
+
 
 class Snake:
     def __init__(self):
-        self.x, self.y = BLOCK_SIZE, BLOCK_SIZE
+        self.x, self.y = config.BLOCK_SIZE, config.BLOCK_SIZE
         self.xdir = 1
         self.ydir = 0
-        self.head = pygame.Rect(self.x, self.y, BLOCK_SIZE, BLOCK_SIZE)
-        self.body = [pygame.Rect(self.x - BLOCK_SIZE, self.y, BLOCK_SIZE, BLOCK_SIZE)]
+        self.head = pygame.Rect(self.x, self.y, config.BLOCK_SIZE, config.BLOCK_SIZE)
+        self.body = [pygame.Rect(self.x - config.BLOCK_SIZE, self.y, config.BLOCK_SIZE, config.BLOCK_SIZE)]
         self.dead = False
         self.rotten_penalty = 1  # câte segmente pierde la următorul rotten
         self.score = 0
@@ -34,8 +37,8 @@ class Snake:
             self.body.append(self.head.copy())
             for i in range(len(self.body)-1):
                 self.body[i].x, self.body[i].y = self.body[i+1].x, self.body[i+1].y
-            self.head.x += self.xdir * BLOCK_SIZE
-            self.head.y += self.ydir * BLOCK_SIZE
+            self.head.x += self.xdir * config.BLOCK_SIZE
+            self.head.y += self.ydir * config.BLOCK_SIZE
             if self.body:
                 self.body.pop()
 
@@ -45,7 +48,7 @@ class Snake:
             last = self.body[-1]
         else:
             last = self.head
-        self.body.append(pygame.Rect(last.x, last.y, BLOCK_SIZE, BLOCK_SIZE))
+        self.body.append(pygame.Rect(last.x, last.y, config.BLOCK_SIZE, config.BLOCK_SIZE))
 
     def shrink(self, amount):
         for _ in range(amount):

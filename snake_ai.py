@@ -1,8 +1,11 @@
 import pygame
 import random
-from config import BLOCK_SIZE, SW, SH, R_INIT, PV, V_PAS, R_PAS
+import config
+
+from config import SW, SH, R_INIT, PV, V_PAS, R_PAS
 from genes import Chromosome, DIRECTIONS
 from pathfinding import a_star
+
 
 class SnakeAI:
     counter = 1
@@ -10,8 +13,8 @@ class SnakeAI:
         self.chromosome = chromosome or Chromosome()
         self.xdir = 1
         self.ydir = 0
-        self.head = pygame.Rect(start_pos[0]*BLOCK_SIZE, start_pos[1]*BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE)
-        self.body = [pygame.Rect(self.head.x - BLOCK_SIZE, self.head.y, BLOCK_SIZE, BLOCK_SIZE)]
+        self.head = pygame.Rect(start_pos[0]*config.BLOCK_SIZE, start_pos[1]*config.BLOCK_SIZE, config.BLOCK_SIZE, config.BLOCK_SIZE)
+        self.body = [pygame.Rect(self.head.x - config.BLOCK_SIZE, self.head.y, config.BLOCK_SIZE, config.BLOCK_SIZE)]
         self.dead = False
         self.rotten_penalty = 1
         self.steps = 0
@@ -34,7 +37,7 @@ class SnakeAI:
         self.fruit_streak = 0  # Resetăm streak-ul când mănâncă un rotten apple
 
     def get_grid_pos(self, rect):
-        return rect.x // BLOCK_SIZE, rect.y // BLOCK_SIZE
+        return rect.x // config.BLOCK_SIZE, rect.y // config.BLOCK_SIZE
 
     def decide(self, state):
         head = state["head"]
@@ -52,8 +55,8 @@ class SnakeAI:
                 start=head,
                 goal=closest_food,
                 obstacles=obstacles,
-                grid_width=SW // BLOCK_SIZE,
-                grid_height=SH // BLOCK_SIZE
+                grid_width=SW // config.BLOCK_SIZE,
+                grid_height=SH // config.BLOCK_SIZE
             )
 
             if direction:
@@ -77,7 +80,7 @@ class SnakeAI:
                 count = 0
                 for ddx, ddy in DIRECTIONS.values():
                     check = (new_pos[0] + ddx, new_pos[1] + ddy)
-                    if 0 <= check[0] < SW // BLOCK_SIZE and 0 <= check[1] < SH // BLOCK_SIZE:
+                    if 0 <= check[0] < SW // config.BLOCK_SIZE and 0 <= check[1] < SH // config.BLOCK_SIZE:
                         if check not in set(state["body"]):
                             count += 1
                 return count
@@ -130,8 +133,8 @@ class SnakeAI:
             self.body.append(self.head.copy())
             for i in range(len(self.body) - 1):
                 self.body[i].x, self.body[i].y = self.body[i + 1].x, self.body[i + 1].y
-            self.head.x += self.xdir * BLOCK_SIZE
-            self.head.y += self.ydir * BLOCK_SIZE
+            self.head.x += self.xdir * config.BLOCK_SIZE
+            self.head.y += self.ydir * config.BLOCK_SIZE
             if self.body:
                 self.body.pop()
 
@@ -170,7 +173,7 @@ class SnakeAI:
             last = self.body[-1]
         else:
             last = self.head
-        self.body.append(pygame.Rect(last.x, last.y, BLOCK_SIZE, BLOCK_SIZE))
+        self.body.append(pygame.Rect(last.x, last.y, config.BLOCK_SIZE, config.BLOCK_SIZE))
         self.score += 1
 
     def shrink(self, amount):
@@ -188,7 +191,7 @@ class SnakeAI:
         visible_poison = []
 
         for f in all_foods:
-            fx, fy = f.rect.x // BLOCK_SIZE, f.rect.y // BLOCK_SIZE
+            fx, fy = f.rect.x // config.BLOCK_SIZE, f.rect.y // config.BLOCK_SIZE
             dist = abs(fx - head_pos[0]) + abs(fy - head_pos[1])
             if dist <= self.vision:
                 if getattr(f, "is_poison", False):
@@ -238,27 +241,27 @@ class SnakeAI:
 
     def randomize_position_away_from(self, others, min_distance=5):
         max_attempts = 100
-        grid_w = SW // BLOCK_SIZE
-        grid_h = SH // BLOCK_SIZE
+        grid_w = SW // config.BLOCK_SIZE
+        grid_h = SH // config.BLOCK_SIZE
 
         for _ in range(max_attempts):
             x = random.randint(1, grid_w - 2)
             y = random.randint(1, grid_h - 2)
             pos_ok = True
             for other in others:
-                dist = abs(other.head.x // BLOCK_SIZE - x) + abs(other.head.y // BLOCK_SIZE - y)
+                dist = abs(other.head.x // config.BLOCK_SIZE - x) + abs(other.head.y // config.BLOCK_SIZE - y)
                 if dist < min_distance:
                     pos_ok = False
                     break
             if pos_ok:
-                self.head.x = x * BLOCK_SIZE
-                self.head.y = y * BLOCK_SIZE
+                self.head.x = x * config.BLOCK_SIZE
+                self.head.y = y * config.BLOCK_SIZE
                 self.body = []
                 return
 
         # fallback dacă nu găsește loc
-        self.head.x = random.randint(1, grid_w - 2) * BLOCK_SIZE
-        self.head.y = random.randint(1, grid_h - 2) * BLOCK_SIZE
+        self.head.x = random.randint(1, grid_w - 2) * config.BLOCK_SIZE
+        self.head.y = random.randint(1, grid_h - 2) * config.BLOCK_SIZE
         self.body = []
 
 
@@ -273,8 +276,8 @@ class SnakeAI:
             start=head,
             goal=enemy_head,
             obstacles=set(state["body"]),  # Obstacolele sunt corpurile altor șerpi
-            grid_width=SW // BLOCK_SIZE,
-            grid_height=SH // BLOCK_SIZE
+            grid_width=SW // config.BLOCK_SIZE,
+            grid_height=SH // config.BLOCK_SIZE
         )
 
         if direction:

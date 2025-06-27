@@ -1,11 +1,11 @@
-SW, SH = 1600, 900
-BLOCK_SIZE = 50
+from settings_manager import load_settings, get_block_size
 
+SW, SH = 1600, 900
+BLOCK_SIZE = get_block_size()
 APPLE_LIFESPAN = 10
 FADE_START = 5  # secunde
 
 
-from settings_manager import load_settings
 player_name = load_settings()
 
 GAME_TYPE = "solo"  # valori posibile: "solo", "ai_only", "ai_with_player"
@@ -15,7 +15,7 @@ SNAKE_SPEED = 2  # frame-uri pe secundă (FPS)
 
 # Viteza inițială și raza de vizualizare pentru AI snakes
 V_INIT = 10
-R_INIT = 50
+R_INIT = 80
 
 # Număr inițial de șerpi AI
 NUM_AI_SNAKES = 8

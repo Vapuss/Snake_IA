@@ -1,0 +1,9 @@
+{
+  "player_name": "Vapuss",
+  "ai_snake_count": 2,
+  "headstart_duration": 20,
+  "challengers_enabled": true,
+  "snake_speed": 7,
+  "ai_only_snake_count": 5,
+  "block_size": 50
+}
