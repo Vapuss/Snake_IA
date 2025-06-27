@@ -1,28 +1,28 @@
 [
   {
-    "avoid_walls": 0.10794121335010336,
-    "avoid_body": 0.2076009757774659,
-    "chase_food": 0.3447233163330289,
-    "stay_centered": 0.0,
-    "avoid_snakes": 0.05951061473821254,
-    "hunt_snakes": 0.025960339557253825,
-    "prefer_corners": 0.0,
-    "fear_poison": 0.268399350314889,
-    "risk_loving": 9.212131349284585e-07,
-    "patience": 0.001349969094675055,
-    "hunter_mode": 0.03451329962123643
+    "avoid_walls": 0.2292076595580162,
+    "avoid_body": 0.2799390129835513,
+    "chase_food": 0.2454228330966615,
+    "stay_centered": 0.0003340791841999362,
+    "avoid_snakes": 0.03988753862013816,
+    "hunt_snakes": 0.007033528930220892,
+    "prefer_corners": 5.57421539377777e-06,
+    "fear_poison": 0.14263472460273408,
+    "risk_loving": 0.0010024838493628654,
+    "patience": 0.02728597864765224,
+    "hunter_mode": 0.07724658631206903
   },
   {
-    "avoid_walls": 0.11022716688741718,
-    "avoid_body": 0.24779989919243117,
-    "chase_food": 0.24498319312445588,
-    "stay_centered": 0.0,
-    "avoid_snakes": 0.04515666681804104,
-    "hunt_snakes": 0.012699156309053045,
-    "prefer_corners": 0.0,
-    "fear_poison": 0.24424688590545632,
-    "risk_loving": 1.1233805112583125e-06,
-    "patience": 0.0016462302959637657,
-    "hunter_mode": 0.09323967808667057
+    "avoid_walls": 0.3638547405517357,
+    "avoid_body": 0.05540790300061704,
+    "chase_food": 0.7448734041912813,
+    "stay_centered": 0.939457208428214,
+    "avoid_snakes": 0.7059776543069919,
+    "hunt_snakes": 0.9637446491829156,
+    "prefer_corners": 0.080089068578442,
+    "fear_poison": 0.6928417300348408,
+    "risk_loving": 0.36587676561325677,
+    "patience": 0.1815394981965579,
+    "hunter_mode": 0.6311384023948122
   }
 ]

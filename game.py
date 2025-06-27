@@ -12,7 +12,7 @@ from snake_ai import SnakeAI
 from population import PopulationManager
 from utils import manhattan_dist
 from button import Button
-from settings_manager import load_settings
+from settings_manager import load_settings, get_snake_speed
 import config
 
 BG_PAUSE = pygame.image.load("assets/overlay_pause.png")
@@ -169,7 +169,7 @@ def death_menu(screen, score):
         title = TITLE_FONT.render("YOU DIED", True, "red")
         screen.blit(title, title.get_rect(center=(SW // 2, 200)))
 
-        score_txt = UI_FONT.render(f"{config.player_name}'s Score: {score}", True, "white")
+        score_txt = UI_FONT.render(f"{config.player_name}'s Length: {score}", True, "white")
         screen.blit(score_txt, score_txt.get_rect(center=(SW // 2, 280)))
 
         again = Button(None, (SW//2, 400), "PLAY AGAIN", UI_FONT, "white", "green")
@@ -237,8 +237,10 @@ def start_game(screen):
 
 
     elif config.GAME_TYPE == "ai_only_no_training":
+        from settings_manager import get_ai_only_snake_count
         pop_manager = PopulationManager()
-        pop_manager.initialize_population(config.NUM_AI_SNAKES)
+        num_ai = get_ai_only_snake_count()
+        pop_manager.initialize_population(num_ai)
         snakes = pop_manager.get_alive_snakes()
 
     spawn_apple(apples, snakes[0], NormalApple)  # folosim poziția primului snake
@@ -335,7 +337,7 @@ def start_game(screen):
                             challenger.name = f"Challenger_{i+1}"
 
                             # lungime proporțională
-                            percent = random.randint(50, 70)
+                            percent = random.randint(30, 50)
                             clone_len = max(3, current_len * percent // 100)
                             challenger.head = lone.head.copy()
                             challenger.randomize_position_away_from([lone] + challengers)
@@ -555,6 +557,6 @@ def start_game(screen):
         draw_scoreboard(screen, snakes)
 
         pygame.display.update()
-        clock.tick(config.SNAKE_SPEED)
+        clock.tick(get_snake_speed())
 
 

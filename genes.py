@@ -116,12 +116,16 @@ def avoid_snakes(state, direction):
     dx, dy = DIRECTIONS[direction]
     new_pos = (head[0] + dx, head[1] + dy)
 
-    # evită doar dacă e slab
-    if length >= 10:
-        return 0
+    # Dacă lungimea altui șarpe e mai mare decât a ta, evită-l
+    danger = 0
+    for snake in others:
+        enemy_length = len(snake) + 1  # Lungimea altui șarpe (cap + corp)
+        if enemy_length >= length:  # Evită șerpii mai mari
+            if new_pos in snake:
+                danger += 1
 
-    danger = sum(1 for snake in others if new_pos in snake)
-    return -5 * danger
+    return -5 * danger  # Penalizează dacă se apropie de un șarpe mai mare
+
 
 
 def hunt_snakes(state, direction):
@@ -132,11 +136,25 @@ def hunt_snakes(state, direction):
     dx, dy = DIRECTIONS[direction]
     new_pos = (head[0] + dx, head[1] + dy)
 
+    # Dacă șarpele este prea mic, nu vânează
     if length < 7:
-        return 0  # prea mic pentru vânătoare
+        return 0  # Prea mic pentru vânătoare
 
-    dists = [abs(hx - new_pos[0]) + abs(hy - new_pos[1]) for hx, hy in heads]
-    return max(0, 15 - min(dists)) if dists else 0
+    # Căutăm șerpi mai mici decât noi
+    potential_prey = []
+    for idx, (hx, hy) in enumerate(heads):
+        enemy_length = len(state["others"][idx]) + 1  # Lungimea altui șarpe
+        if enemy_length < length:  # Dacă alt șarpe e mai mic decât noi
+            dist = abs(hx - new_pos[0]) + abs(hy - new_pos[1])
+            potential_prey.append((dist, (hx, hy)))
+
+    if potential_prey:
+        # Alege cel mai apropiat șarpe pe care să-l vânezi
+        closest_prey = min(potential_prey, key=lambda x: x[0])
+        prey_pos = closest_prey[1]
+        return max(0, 15 - closest_prey[0])  # Mai aproape = mai multe puncte
+
+    return 0  # Dacă nu am găsit prada, nu se întâmplă nimic
 
 
 def prefer_corners(state, direction):

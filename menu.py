@@ -76,11 +76,16 @@ def options_menu():
     font = get_font(40)
     label_font = get_font(36)
 
-    from settings_manager import get_ai_snake_count, get_headstart_duration, get_challengers_enabled
+    from settings_manager import get_ai_snake_count, get_headstart_duration, get_challengers_enabled, get_snake_speed, get_ai_only_snake_count
 
     ai_snake_count = get_ai_snake_count()
+    ai_battle_snake_count  = get_ai_only_snake_count()
     headstart_duration = get_headstart_duration()
     challengers_enabled = get_challengers_enabled()
+    snake_speed = get_snake_speed()
+    snake_speed_min = 1
+    snake_speed_max = 30
+
     toggle_on = toggle_off = None
 
     game_types = ["solo", "ai_only", "ai_with_player", "ai_only_no_training"]
@@ -103,6 +108,8 @@ def options_menu():
         OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
         minus_btn = None
         plus_btn = None
+        speed_minus_btn = None
+        speed_plus_btn = None
         minus_headstart = plus_headstart = None
         
 
@@ -113,9 +120,16 @@ def options_menu():
         # === Etichete stânga (aliniate pe verticală) ===
         label_x = config.SW // 6
         label_y_name = 175
-        label_y_mode = 275
+        label_y_mode = 335
 
         SCREEN.blit(label_font.render("Enter your name", True, "white"), (label_x, label_y_name))
+
+        label_y_speed = label_y_name + 80
+        SCREEN.blit(label_font.render("Snake Speed", True, "white"), (label_x, label_y_speed))
+
+
+
+
         SCREEN.blit(label_font.render("Game Mode", True, "white"), (label_x, label_y_mode))
 
         # === Casetă de input nume ===
@@ -123,8 +137,25 @@ def options_menu():
         name_surface = font.render(text, True, "white")
         SCREEN.blit(name_surface, (input_box.x + 10, input_box.y + 10))
 
+
+
+        # === Snake Speed ===
+
+        speed_y = input_box.y + 120
+        speed_minus_btn = Button(None, (input_box.x + 50, speed_y), "-", get_font(50), "white", "#cc6666")
+        speed_plus_btn = Button(None, (input_box.x + 270, speed_y), "+", get_font(50), "white", "#66cc66")
+
+        speed_text = get_font(40).render(str(snake_speed), True, "#d6b400")
+        SCREEN.blit(speed_text, speed_text.get_rect(center=(input_box.x + 160, speed_y + 5)))
+
+        for b in [speed_minus_btn, speed_plus_btn]:
+            b.change_color(OPTIONS_MOUSE_POS)
+            b.update(SCREEN)
+
+
+
         # === Game Mode selector + arrows ===
-        mode_y = input_box.y + 140
+        mode_y = input_box.y + 200
         left_arrow = Button(None, (input_box.x - 15, mode_y), "<", get_font(50), "white", "#7ad47a")
         right_arrow = Button(None, (input_box.x + 335, mode_y), ">", get_font(50), "white", "#7ad47a")
 
@@ -140,38 +171,56 @@ def options_menu():
             SCREEN.blit(label_font.render("Number of AI snakes", True, "white"), (label_x, label_y_mode + 80))
 
             minus_btn = Button(None, (input_box.x + 50, mode_y + 80), "-", get_font(50), "white", "#cc6666")
-            plus_btn = Button(None, (input_box.x + 270, mode_y + 80), "+", get_font(50), "white", "#66cc66")
+            plus_btn = Button(None, (input_box.x + 270, mode_y + 75), "+", get_font(50), "white", "#66cc66")
 
             count_text = get_font(40).render(str(ai_snake_count), True, "#d6b400")
-            SCREEN.blit(count_text, count_text.get_rect(center=(input_box.x + 160, mode_y + 85)))
+            SCREEN.blit(count_text, count_text.get_rect(center=(input_box.x + 160, mode_y + 80)))
 
             for b in [minus_btn, plus_btn]:
                 b.change_color(OPTIONS_MOUSE_POS)
                 b.update(SCREEN)
 
 
+        
+
+
             SCREEN.blit(label_font.render("Headstart duration (sec)", True, "white"), (label_x, label_y_mode + 160))
 
             minus_headstart = Button(None, (input_box.x + 50, mode_y + 160), "-", get_font(50), "white", "#cc6666")
-            plus_headstart = Button(None, (input_box.x + 270, mode_y + 160), "+", get_font(50), "white", "#66cc66")
+            plus_headstart = Button(None, (input_box.x + 270, mode_y + 155), "+", get_font(50), "white", "#66cc66")
 
             head_text = get_font(40).render(str(headstart_duration), True, "#00e6e6")
-            SCREEN.blit(head_text, head_text.get_rect(center=(input_box.x + 160, mode_y + 165)))
+            SCREEN.blit(head_text, head_text.get_rect(center=(input_box.x + 160, mode_y + 160)))
 
             for b in [minus_headstart, plus_headstart]:
                 b.change_color(OPTIONS_MOUSE_POS)
                 b.update(SCREEN)
 
+        if game_types[current_index] == "ai_only_no_training":
+            SCREEN.blit(label_font.render("Number of AI snakes", True, "white"), (label_x, label_y_mode + 80))
+
+            minus_btn = Button(None, (input_box.x + 50, mode_y + 80), "-", get_font(50), "white", "#cc6666")
+            plus_btn = Button(None, (input_box.x + 270, mode_y + 75), "+", get_font(50), "white", "#66cc66")
+
+            
+            count_text = get_font(40).render(str(ai_battle_snake_count), True, "#d6b400")
+            SCREEN.blit(count_text, count_text.get_rect(center=(input_box.x + 160, mode_y + 80)))
+
+            for b in [minus_btn, plus_btn]:
+                b.change_color(OPTIONS_MOUSE_POS)
+                b.update(SCREEN)
+
+
         if game_types[current_index] == "ai_only":
-            SCREEN.blit(label_font.render("Enable Challengers", True, "white"), (label_x, label_y_mode + 240))
+            SCREEN.blit(label_font.render("Enable Challengers", True, "white"), (label_x, label_y_mode + 80))
 
             # Butoane pentru On/Off
-            toggle_on = Button(None, (input_box.x + 50, mode_y + 240), "ON", get_font(50), "white", "#66cc66")
-            toggle_off = Button(None, (input_box.x + 270, mode_y + 240), "OFF", get_font(50), "white", "#cc6666")
+            toggle_on = Button(None, (input_box.x + 50, mode_y + 80), "ON", get_font(50), "white", "#66cc66")
+            toggle_off = Button(None, (input_box.x + 270, mode_y + 80), "OFF", get_font(50), "white", "#cc6666")
 
             
             status_text = get_font(40).render("ON" if challengers_enabled else "OFF", True, "#d6b400")
-            SCREEN.blit(status_text, status_text.get_rect(center=(input_box.x + 160, mode_y + 245)))
+            SCREEN.blit(status_text, status_text.get_rect(center=(input_box.x + 160, mode_y + 80)))
 
             for b in [toggle_on, toggle_off]:
                 b.change_color(OPTIONS_MOUSE_POS)
@@ -210,6 +259,18 @@ def options_menu():
                     current_index = (current_index + 1) % len(game_types)
                     config.GAME_TYPE = game_types[current_index]
 
+                if speed_minus_btn.check_for_input(OPTIONS_MOUSE_POS):
+                    if snake_speed > snake_speed_min:
+                        snake_speed -= 1
+                        config.SNAKE_SPEED = snake_speed
+
+                if speed_plus_btn.check_for_input(OPTIONS_MOUSE_POS):
+                    if snake_speed < snake_speed_max:
+                        snake_speed += 1
+                        config.SNAKE_SPEED = snake_speed
+
+
+
                 if back_button.check_for_input(OPTIONS_MOUSE_POS):
                     name_final = text if text.strip() else "Player"
                     config.player_name = name_final
@@ -217,7 +278,9 @@ def options_menu():
                         "player_name": name_final,
                         "ai_snake_count": ai_snake_count,
                         "headstart_duration": headstart_duration,
-                        "challengers_enabled": challengers_enabled
+                        "challengers_enabled": challengers_enabled,
+                        "snake_speed": snake_speed,
+                        "ai_only_snake_count": ai_battle_snake_count
                     }
                     save_full_settings(settings_to_save)
                     return
@@ -234,11 +297,19 @@ def options_menu():
                     if plus_btn and plus_btn.check_for_input(OPTIONS_MOUSE_POS):
                         ai_snake_count = min(30, ai_snake_count + 1)
 
-
                     if minus_headstart and minus_headstart.check_for_input(OPTIONS_MOUSE_POS):
                         headstart_duration = max(0, headstart_duration - 1)
                     if plus_headstart and plus_headstart.check_for_input(OPTIONS_MOUSE_POS):
                         headstart_duration = min(30, headstart_duration + 1)
+
+                if game_types[current_index] == "ai_only_no_training":
+                    if minus_btn and minus_btn.check_for_input(OPTIONS_MOUSE_POS):
+                        ai_battle_snake_count = max(1, ai_battle_snake_count - 1)
+                    if plus_btn and plus_btn.check_for_input(OPTIONS_MOUSE_POS):
+                        ai_battle_snake_count = min(30, ai_battle_snake_count + 1)
+
+
+                    
 
 
             if event.type == pygame.KEYDOWN and active:

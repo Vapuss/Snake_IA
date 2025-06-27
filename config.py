@@ -10,7 +10,7 @@ player_name = load_settings()
 
 GAME_TYPE = "solo"  # valori posibile: "solo", "ai_only", "ai_with_player"
 
-SNAKE_SPEED = 8  # frame-uri pe secundă (FPS)
+SNAKE_SPEED = 2  # frame-uri pe secundă (FPS)
 
 
 # Viteza inițială și raza de vizualizare pentru AI snakes

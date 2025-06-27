@@ -46,7 +46,6 @@ class SnakeAI:
             # Construim obstacole
             obstacles = set(state["body"])
             for enemy in state["enemies"]:
-                
                 obstacles.update(enemy["body"])
 
             direction = a_star(
@@ -69,9 +68,7 @@ class SnakeAI:
         best = max(scores, key=scores.get)
         best_score = scores[best]
 
-        
-
-        # Dacă toate scorurile sunt egale (sau aproape), evită stagnarea
+        # === Dacă toate scorurile sunt egale (sau aproape), evită stagnarea ===
         unique_scores = set(round(s, 1) for s in scores.values())
         if len(unique_scores) <= 1:
             def free_space(dir_key):
@@ -90,6 +87,24 @@ class SnakeAI:
             print("[Fallback] Scoruri egale → ales după spațiu liber:", best)
         else:
             self.xdir, self.ydir = DIRECTIONS[best]
+
+        # === Noua logică pentru vanarea altor șerpi ===
+        # Comparăm lungimile pentru a decide dacă trebuie să atacăm
+        def should_hunt(snake):
+            """ Verifică dacă șarpele ar trebui să vâneze un alt șarpe mai mic decât el """
+            return len(self.body) > enemy["length"] # Atacă dacă este mai mare
+
+        # Căutăm șerpii mai mici care pot fi vânați
+        for enemy in state["enemies"]:
+            if enemy != self and not enemy["dead"] and should_hunt(enemy):
+                # Apelăm funcția calculate_attack_direction pentru a obține direcția de atac
+                self.xdir, self.ydir = self.calculate_attack_direction(state, enemy)
+                print(f"Atacăm {enemy['name']}!")
+                return
+
+        # Dacă nu am găsit pe nimeni de vânat, păstrăm direcția aleasă
+        print("Niciun atac realizat, păstrăm direcția aleasă.")
+
 
 
     
@@ -190,6 +205,9 @@ class SnakeAI:
             enemy = {
             "head": self.get_grid_pos(other.head),
             "body": [self.get_grid_pos(b) for b in other.body],
+            "dead": other.dead,  # Adăugăm atributul `dead`
+            "name": other.name,
+            "length": len(other.body) + 1,
             }
             enemies.append(enemy)
             enemy_heads.append(enemy["head"])
@@ -242,4 +260,25 @@ class SnakeAI:
         self.head.x = random.randint(1, grid_w - 2) * BLOCK_SIZE
         self.head.y = random.randint(1, grid_h - 2) * BLOCK_SIZE
         self.body = []
+
+
+    
+    def calculate_attack_direction(self, state, enemy):
+        """ Calculăm direcția de atac față de un alt șarpe """
+        head = state["head"]
+        enemy_head = enemy["head"]
+
+        # Utilizăm A* pentru a obține cea mai bună direcție către inamic
+        direction = a_star(
+            start=head,
+            goal=enemy_head,
+            obstacles=set(state["body"]),  # Obstacolele sunt corpurile altor șerpi
+            grid_width=SW // BLOCK_SIZE,
+            grid_height=SH // BLOCK_SIZE
+        )
+
+        if direction:
+            return DIRECTIONS[direction]  # Returnăm direcția calculată de A*
+        return self.xdir, self.ydir  # Dacă nu s-a găsit cale, rămânem pe direcția curentă
+
 

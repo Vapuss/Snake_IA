@@ -59,11 +59,13 @@ class NormalApple(AppleBase):
             reward = snake.fruit_streak * 2  # 5 puncte pentru fiecare măr mâncat consecutiv
             if reward < 20:
                 snake.score += reward
+                # Afișăm un mesaj de bonus pentru streak
+                add_death_message(f"{snake.name} gained {reward} points for a streak of {snake.fruit_streak} apples!")
             else:
                 snake.score+=20
+                add_death_message(f"{snake.name} gained 20 points for a streak of {snake.fruit_streak} apples!")
 
-            # Afișăm un mesaj de bonus pentru streak
-            add_death_message(f"{snake.name} gained {reward} points for a streak of {snake.fruit_streak} apples!")
+            
 
             # Creștem corpul șarpelui
             snake.grow()
@@ -101,6 +103,6 @@ class PoisonousApple(AppleBase):
 
     def apply_effect(self, snake):
         if hasattr(snake, "score"):
-            snake.score -= 2
+            snake.score -= 5
         if len(snake.body) + 1 >= 15:
             snake.dead = True
