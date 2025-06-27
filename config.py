@@ -1,5 +1,6 @@
 from settings_manager import load_settings, get_block_size
 
+# Screen width and height, most likely will have to be changed depending on the user's screen size, should implement an option to change it from the settings/adaptiveness for each screen size
 SW, SH = 1600, 900
 BLOCK_SIZE = get_block_size()
 APPLE_LIFESPAN = 10

@@ -27,7 +27,23 @@ Un joc de tip Snake cu AI evolutiv, folosind algoritmi genetici pentru a crea ș
 - **Python 3.x**  
 - **Pygame** (pentru grafică și interactivitate)
 
-### Cum se instalează
+### Cum se instalează și rulează jocul
+
+#### Varianta 1 - Plug & Play (fără instalare)
+
+
+1. Deschide folderul dist/.
+
+2. Dă dublu click pe SnakeAI.exe.
+
+3. Jocul pornește imediat — nu ai nevoie de Python sau instalări.
+
+⚠️ Notă: Dacă antivirusul îți blochează aplicația, marcheaz-o ca "safe" sau selectează "Allow anyway".
+
+
+
+
+#### Varianta 2 - Rulează din sursă (cu Python)
 
 1. Clonează proiectul:
     ```bash
