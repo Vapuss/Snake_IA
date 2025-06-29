@@ -194,6 +194,51 @@ def death_menu(screen, score):
 
         pygame.display.update()
 
+
+
+
+def endgame_menu(screen, snakes):
+    if not snakes:
+        return "menu"  # fallback în caz de listă goală
+
+    # Găsește câștigătorul după lungimea corpului
+    winner_snake = max(snakes, key=lambda s: len(s.body))
+    winner_name = getattr(winner_snake, 'name', "Unnamed")
+    winner_score = len(winner_snake.body) + 1  # 
+
+    while True:
+        screen.blit(BG_PAUSE, (0, 0))
+        mouse_pos = pygame.mouse.get_pos()
+
+        title = TITLE_FONT.render("ALL SNAKES DIED", True, "red")
+        screen.blit(title, title.get_rect(center=(SW // 2, 150)))
+
+        score_txt = UI_FONT.render(f"{winner_name}'s Length: {winner_score}", True, "white")
+        screen.blit(score_txt, score_txt.get_rect(center=(SW // 2, 250)))
+
+        again = Button(None, (SW//2, 400), "PLAY AGAIN", UI_FONT, "white", "green")
+        mainmenu = Button(None, (SW//2, 500), "MAIN MENU", UI_FONT, "white", "yellow")
+        quitgame = Button(None, (SW//2, 600), "QUIT", UI_FONT, "white", "red")
+
+        for b in [again, mainmenu, quitgame]:
+            b.change_color(mouse_pos)
+            b.update(screen)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit(); sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if again.check_for_input(mouse_pos):
+                    return "again"
+                elif mainmenu.check_for_input(mouse_pos):
+                    return "menu"
+                elif quitgame.check_for_input(mouse_pos):
+                    pygame.quit(); sys.exit()
+
+        pygame.display.update()
+
+
+
 def start_game(screen):
     clock = pygame.time.Clock()
     apples = []
@@ -245,6 +290,10 @@ def start_game(screen):
         snakes = pop_manager.get_alive_snakes()
 
     spawn_apple(apples, snakes[0], NormalApple)  # folosim poziția primului snake
+
+    if snakes:
+        last_snakes = snakes.copy()
+
 
     # === Timere pentru mere ===
     last_rotten_spawn = time.time()
@@ -441,6 +490,15 @@ def start_game(screen):
                 return start_game(screen)
             elif choice == "menu":
                 return
+            
+        # === Daca ultimul sarpe moare in AI Only Battle Royale ===
+        if config.GAME_TYPE == "ai_only_no_training" and not snakes:
+            choice = endgame_menu(screen, last_snakes)  # folosește funcția creată mai sus
+            if choice == "again":
+                return start_game(screen)  
+            elif choice == "menu":
+                return
+
 
         # === Spawn mere ===
         alive_snake = next((s for s in snakes if not s.dead), None)
