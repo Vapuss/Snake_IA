@@ -84,41 +84,9 @@
   ('python310.dll',
    'C:\\Users\\Pavel\\AppData\\Local\\Programs\\Python\\Python310\\python310.dll',
    'BINARY'),
-  ('libogg-0.dll',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libogg-0.dll',
-   'BINARY'),
-  ('libopus-0.dll',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libopus-0.dll',
-   'BINARY'),
-  ('libopusfile-0.dll',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libopusfile-0.dll',
-   'BINARY'),
-  ('zlib1.dll',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\zlib1.dll',
-   'BINARY'),
-  ('libjpeg-9.dll',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libjpeg-9.dll',
-   'BINARY'),
   ('freetype.dll',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\freetype.dll',
-   'BINARY'),
-  ('libpng16-16.dll',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libpng16-16.dll',
-   'BINARY'),
-  ('SDL2.dll',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\SDL2.dll',
-   'BINARY'),
-  ('libwebp-7.dll',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libwebp-7.dll',
    'BINARY'),
   ('libtiff-5.dll',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
@@ -128,21 +96,53 @@
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\SDL2_mixer.dll',
    'BINARY'),
+  ('zlib1.dll',
+   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\zlib1.dll',
+   'BINARY'),
   ('libmodplug-1.dll',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libmodplug-1.dll',
+   'BINARY'),
+  ('libopusfile-0.dll',
+   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libopusfile-0.dll',
+   'BINARY'),
+  ('SDL2.dll',
+   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\SDL2.dll',
+   'BINARY'),
+  ('SDL2_ttf.dll',
+   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\SDL2_ttf.dll',
    'BINARY'),
   ('SDL2_image.dll',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\SDL2_image.dll',
    'BINARY'),
+  ('libjpeg-9.dll',
+   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libjpeg-9.dll',
+   'BINARY'),
+  ('libogg-0.dll',
+   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libogg-0.dll',
+   'BINARY'),
+  ('libpng16-16.dll',
+   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libpng16-16.dll',
+   'BINARY'),
+  ('libwebp-7.dll',
+   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libwebp-7.dll',
+   'BINARY'),
   ('portmidi.dll',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\portmidi.dll',
    'BINARY'),
-  ('SDL2_ttf.dll',
+  ('libopus-0.dll',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\SDL2_ttf.dll',
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libopus-0.dll',
    'BINARY'),
   ('numpy\\.libs\\libopenblas.XWYDX2IKJW2NMTWSFYNGFUWKQU3LYTCZ.gfortran-win_amd64.dll',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
@@ -357,64 +357,56 @@
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\base.cp310-win_amd64.pyd',
    'EXTENSION'),
-  ('api-ms-win-crt-environment-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-environment-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-filesystem-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-filesystem-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-convert-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-convert-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-runtime-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-runtime-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-math-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-math-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-locale-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-locale-l1-1-0.dll',
-   'BINARY'),
-  ('VCRUNTIME140.dll',
-   'C:\\Users\\Pavel\\AppData\\Local\\Programs\\Python\\Python310\\VCRUNTIME140.dll',
-   'BINARY'),
-  ('api-ms-win-crt-conio-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-conio-l1-1-0.dll',
-   'BINARY'),
   ('api-ms-win-crt-stdio-l1-1-0.dll',
    'C:\\Program '
    'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-stdio-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-crt-string-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-string-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-crt-process-l1-1-0.dll',
    'C:\\Program '
    'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-process-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-crt-time-l1-1-0.dll',
+  ('api-ms-win-crt-filesystem-l1-1-0.dll',
    'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-time-l1-1-0.dll',
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-filesystem-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-locale-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-locale-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-conio-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-conio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-math-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-math-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-string-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-environment-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-environment-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-convert-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-convert-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-crt-heap-l1-1-0.dll',
    'C:\\Program '
    'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-heap-l1-1-0.dll',
    'BINARY'),
-  ('pygame\\libogg-0.dll',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libogg-0.dll',
+  ('VCRUNTIME140.dll',
+   'C:\\Users\\Pavel\\AppData\\Local\\Programs\\Python\\Python310\\VCRUNTIME140.dll',
    'BINARY'),
-  ('pygame\\libopus-0.dll',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libopus-0.dll',
+  ('api-ms-win-crt-runtime-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-runtime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-time-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-crt-time-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-crt-utility-l1-1-0.dll',
    'C:\\Program '
@@ -432,6 +424,14 @@
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\SDL2.dll',
    'BINARY'),
+  ('pygame\\libogg-0.dll',
+   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libogg-0.dll',
+   'BINARY'),
+  ('pygame\\libopus-0.dll',
+   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libopus-0.dll',
+   'BINARY'),
   ('libcrypto-1_1.dll',
    'C:\\Users\\Pavel\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\libcrypto-1_1.dll',
    'BINARY'),
@@ -441,13 +441,13 @@
   ('libssl-1_1.dll',
    'C:\\Users\\Pavel\\AppData\\Local\\Programs\\Python\\Python310\\DLLs\\libssl-1_1.dll',
    'BINARY'),
-  ('pygame\\libpng16-16.dll',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libpng16-16.dll',
-   'BINARY'),
   ('pygame\\SDL2_image.dll',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\SDL2_image.dll',
+   'BINARY'),
+  ('pygame\\libpng16-16.dll',
+   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\libpng16-16.dll',
    'BINARY'),
   ('pygame\\SDL2_mixer.dll',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
@@ -464,45 +464,33 @@
   ('ucrtbase.dll',
    'C:\\Program Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\ucrtbase.dll',
    'BINARY'),
-  ('api-ms-win-core-debug-l1-1-0.dll',
+  ('api-ms-win-core-rtlsupport-l1-1-0.dll',
    'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-debug-l1-1-0.dll',
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-rtlsupport-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-profile-l1-1-0.dll',
+  ('api-ms-win-core-file-l2-1-0.dll',
    'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-profile-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-timezone-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-timezone-l1-1-0.dll',
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-file-l2-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-processenvironment-l1-1-0.dll',
    'C:\\Program '
    'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-processenvironment-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-file-l1-2-0.dll',
+  ('api-ms-win-core-debug-l1-1-0.dll',
    'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-file-l1-2-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-sysinfo-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-sysinfo-l1-1-0.dll',
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-debug-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-synch-l1-1-0.dll',
    'C:\\Program '
    'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-synch-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-rtlsupport-l1-1-0.dll',
+  ('api-ms-win-core-timezone-l1-1-0.dll',
    'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-timezone-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-handle-l1-1-0.dll',
+  ('api-ms-win-core-datetime-l1-1-0.dll',
    'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-handle-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-interlocked-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-interlocked-l1-1-0.dll',
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-datetime-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-string-l1-1-0.dll',
    'C:\\Program '
@@ -512,73 +500,77 @@
    'C:\\Program '
    'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-libraryloader-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-synch-l1-2-0.dll',
+  ('api-ms-win-core-util-l1-1-0.dll',
    'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-synch-l1-2-0.dll',
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-util-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-console-l1-1-0.dll',
+  ('api-ms-win-core-profile-l1-1-0.dll',
    'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-console-l1-1-0.dll',
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-profile-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-file-l1-1-0.dll',
    'C:\\Program '
    'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-file-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-processthreads-l1-1-1.dll',
+  ('api-ms-win-core-memory-l1-1-0.dll',
    'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-processthreads-l1-1-1.dll',
-   'BINARY'),
-  ('api-ms-win-core-util-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-util-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-datetime-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-datetime-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-localization-l1-2-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-localization-l1-2-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-processthreads-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-processthreads-l1-1-0.dll',
-   'BINARY'),
-  ('api-ms-win-core-heap-l1-1-0.dll',
-   'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-heap-l1-1-0.dll',
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-memory-l1-1-0.dll',
    'BINARY'),
   ('api-ms-win-core-namedpipe-l1-1-0.dll',
    'C:\\Program '
    'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-namedpipe-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-memory-l1-1-0.dll',
+  ('api-ms-win-core-heap-l1-1-0.dll',
    'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-memory-l1-1-0.dll',
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-heap-l1-1-0.dll',
    'BINARY'),
-  ('api-ms-win-core-file-l2-1-0.dll',
+  ('api-ms-win-core-file-l1-2-0.dll',
    'C:\\Program '
-   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-file-l2-1-0.dll',
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-file-l1-2-0.dll',
    'BINARY'),
   ('api-ms-win-core-errorhandling-l1-1-0.dll',
    'C:\\Program '
    'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-errorhandling-l1-1-0.dll',
    'BINARY'),
+  ('api-ms-win-core-sysinfo-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-sysinfo-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-handle-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-handle-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-localization-l1-2-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-localization-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-2-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-synch-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-processthreads-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-interlocked-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-interlocked-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-console-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-console-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-1.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin\\api-ms-win-core-processthreads-l1-1-1.dll',
+   'BINARY'),
   ('arial.ttf',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\arial.ttf',
    'DATA'),
-  ('assets\\_copy.json',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\assets\\_copy.json',
-   'DATA'),
   ('assets\\bar_ico.ico',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\assets\\bar_ico.ico',
-   'DATA'),
-  ('assets\\elites.json',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\assets\\elites.json',
    'DATA'),
   ('assets\\main_menu.png',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
@@ -600,13 +592,13 @@
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\settings.json',
    'DATA'),
-  ('pygame\\freesansbold.ttf',
-   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
-   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\freesansbold.ttf',
-   'DATA'),
   ('pygame\\pygame_icon.bmp',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\pygame_icon.bmp',
+   'DATA'),
+  ('pygame\\freesansbold.ttf',
+   'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
+   'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\pygame\\freesansbold.ttf',
    'DATA'),
   ('base_library.zip',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
@@ -615,7 +607,7 @@
  [],
  False,
  False,
- 1751031815,
+ 1751211167,
  [('runw.exe',
    'R:\\Uni\\Quatro Lastonni\\SII\\Proiect _ '
    'Snake\\FromTheBeginning\\venv\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\runw.exe',

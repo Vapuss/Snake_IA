@@ -267,21 +267,32 @@ class SnakeAI:
 
     
     def calculate_attack_direction(self, state, enemy):
-        """ Calculăm direcția de atac față de un alt șarpe """
+        """ Calculam directia de atac catre orice parte a corpului inamicului """
         head = state["head"]
-        enemy_head = enemy["head"]
 
-        # Utilizăm A* pentru a obține cea mai bună direcție către inamic
-        direction = a_star(
-            start=head,
-            goal=enemy_head,
-            obstacles=set(state["body"]),  # Obstacolele sunt corpurile altor șerpi
-            grid_width=SW // config.BLOCK_SIZE,
-            grid_height=SH // config.BLOCK_SIZE
-        )
+        # Facem o lista cu toate celulele din corpul inamicului, inclusiv capul
+        targets = enemy["body"] + [enemy["head"]]
 
-        if direction:
-            return DIRECTIONS[direction]  # Returnăm direcția calculată de A*
-        return self.xdir, self.ydir  # Dacă nu s-a găsit cale, rămânem pe direcția curentă
+        # Consideram corpul propriu ca obstacol pentru algoritmul A*
+        obstacles = set(state["body"])
+
+        # Parcurgem toate pozitiile din corpul inamicului ca potentiale tinte
+        for target in targets:
+            # Incercam sa gasim un drum valid cu A* catre acea celula
+            direction = a_star(
+                start=head,
+                goal=target,
+                obstacles=obstacles,
+                grid_width=SW // config.BLOCK_SIZE,
+                grid_height=SH // config.BLOCK_SIZE
+            )
+            if direction:
+                # Daca gasim un drum, returnam prima directie din acel drum
+                return DIRECTIONS[direction]
+
+        # Daca nu s-a gasit niciun drum catre corpul inamicului, continuam in directia curenta
+        return self.xdir, self.ydir
+
+
 
 

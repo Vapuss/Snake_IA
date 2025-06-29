@@ -36,12 +36,14 @@ class Chromosome:
             self.genes = genes
 
     def mutate(self, rate=0.1):
+        # Cu probabilitate `rate`, modificam fiecare gena putin
         for k in self.genes:
             if random.random() < rate:
                 self.genes[k] += random.uniform(-0.2, 0.2)
                 self.genes[k] = max(0, min(1, self.genes[k]))
 
     def mutated_copy(self):
+        # Copiem genele si le mutam, apoi le rebalansam
         genes_copy = dict(self.genes)
         new_chrom = Chromosome(genes_copy)
         new_chrom.mutate()
@@ -50,12 +52,14 @@ class Chromosome:
 
 
     def crossover(self, other):
+        # Recombina genele cu alt cromozom, alegand aleator de la fiecare parinte
         new_genes = {}
         for k in self.genes:
             new_genes[k] = random.choice([self.genes[k], other.genes[k]])
         return rebalance_gene_weights(Chromosome(new_genes))
 
     def evaluate(self, state, direction):
+        # Evalueaza scorul unei directii pe baza genelor si a mediului
         score = 0
         for gene, weight in self.genes.items():
             func = gene_functions.get(gene)
@@ -65,6 +69,7 @@ class Chromosome:
 
 # === Funcții de scor pentru fiecare genă ===
 def avoid_walls(state, direction):
+    # Penalizeaza miscarea catre pereti
     head = state["head"]
     dx, dy = DIRECTIONS[direction]
     new_x = head[0] + dx
@@ -74,6 +79,7 @@ def avoid_walls(state, direction):
     return 0
 
 def avoid_body(state, direction):
+    # Penalizeaza daca se intoarce in propriul corp
     head = state["head"]
     body = state["body"]
     dx, dy = DIRECTIONS[direction]
@@ -81,6 +87,7 @@ def avoid_body(state, direction):
     return -5 if new_pos in body else 0
 
 def chase_food(state, direction):
+    # Recompenseaza apropierea de mancare
     head = state["head"]
     food = state.get("foods", [])
     dx, dy = DIRECTIONS[direction]
@@ -103,6 +110,7 @@ def chase_food(state, direction):
 
 
 def stay_centered(state, direction):
+    # Penalizeaza miscarea catre marginile hartii
     head = state["head"]
     center = (SW // config.BLOCK_SIZE // 2, SH // config.BLOCK_SIZE // 2)
     dx, dy = DIRECTIONS[direction]
@@ -111,6 +119,7 @@ def stay_centered(state, direction):
     return -dist / 2
 
 def avoid_snakes(state, direction):
+    # Evita serpii mai mari
     head = state["head"]
     others = state.get("others", [])
     length = state.get("length", 3)
@@ -131,6 +140,7 @@ def avoid_snakes(state, direction):
 
 
 def hunt_snakes(state, direction):
+    # Recompenseaza miscarea catre serpi mai mici
     head = state["head"]
     heads = state.get("other_heads", [])
     length = state.get("length", 3)
@@ -139,7 +149,7 @@ def hunt_snakes(state, direction):
     new_pos = (head[0] + dx, head[1] + dy)
 
     # Dacă șarpele este prea mic, nu vânează
-    if length < 7:
+    if length < 4:
         return 0  # Prea mic pentru vânătoare
 
     # Căutăm șerpi mai mici decât noi
@@ -160,6 +170,7 @@ def hunt_snakes(state, direction):
 
 
 def prefer_corners(state, direction):
+    # Tine sarpele mai aproape de colturi
     corners = [(0,0), (SW // config.BLOCK_SIZE - 1, 0), (0, SH // config.BLOCK_SIZE - 1), (SW // config.BLOCK_SIZE - 1, SH // config.BLOCK_SIZE - 1)]
     head = state["head"]
     dx, dy = DIRECTIONS[direction]
@@ -168,12 +179,13 @@ def prefer_corners(state, direction):
     return -dist / 2
 
 def fear_poison(state, direction):
+    # Evita mancarea otravita
     poisons = state.get("poison", [])
     head = state["head"]
     dx, dy = DIRECTIONS[direction]
     new_pos = (head[0] + dx, head[1] + dy)
     danger = any(abs(px - new_pos[0]) + abs(py - new_pos[1]) <= 2 for px, py in poisons)
-    return -10 if danger else 0
+    return -40 if danger else 0
 
 def risk_loving(state, direction):
     # Încurajează mișcări noi și explorare
@@ -200,8 +212,9 @@ def patience(state, direction):
     return -1  # penalizează orice mișcare (să nu se arunce aiurea)
 
 def hunter_mode(state, direction):
+    # Mod de comportament dependent de lungime: mic = fugi si mananca, mare = vaneaza
     length = state.get("length", 3)
-    if length < 10:
+    if length < 4:
         # mic -> caută mâncare, evită
         return 0.7 * chase_food(state, direction) + avoid_snakes(state, direction)
     else:
@@ -257,7 +270,7 @@ def rebalance_gene_weights(chromosome):
     if genes["patience"] < 0.001:
         genes["patience"] = 0.2
 
-    # Normalizează totalul
+    # Normalizam toate valorile astfel incat suma lor sa fie 1
     total = sum(genes.values())
     if total > 0:
         for k in genes:

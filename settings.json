@@ -3,7 +3,7 @@
   "ai_snake_count": 7,
   "headstart_duration": 26,
   "challengers_enabled": true,
-  "snake_speed": 20,
-  "ai_only_snake_count": 6,
-  "block_size": 65
+  "snake_speed": 7,
+  "ai_only_snake_count": 10,
+  "block_size": 50
 }
