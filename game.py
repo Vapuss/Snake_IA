@@ -195,47 +195,83 @@ def death_menu(screen, score):
         pygame.display.update()
 
 
-
+def format_named_genes(gene_dict):
+    sorted_genes = sorted(gene_dict.items(), key=lambda x: x[1], reverse=True)
+    return [f"{k.replace('_', ' ').capitalize()}: {v * 100:.1f}%" for k, v in sorted_genes]
 
 def endgame_menu(screen, snakes):
     if not snakes:
-        return "menu"  # fallback în caz de listă goală
+        return "menu"
 
-    # Găsește câștigătorul după lungimea corpului
     winner_snake = max(snakes, key=lambda s: len(s.body))
     winner_name = getattr(winner_snake, 'name', "Unnamed")
-    winner_score = len(winner_snake.body) + 1  # 
+    winner_score = len(winner_snake.body) + 1
+
+    winner_genes = {}
+    if hasattr(winner_snake, "chromosome") and hasattr(winner_snake.chromosome, "genes"):
+        winner_genes = winner_snake.chromosome.genes.copy()
+    formatted_genes = format_named_genes(winner_genes)
+
+    show_genome = False
+    font_small = pygame.font.Font("arial.ttf", 20)
+    arrow_font = pygame.font.Font("arial.ttf", 20)
 
     while True:
         screen.blit(BG_PAUSE, (0, 0))
         mouse_pos = pygame.mouse.get_pos()
 
+        # Titlu
         title = TITLE_FONT.render("ALL SNAKES DIED", True, "red")
         screen.blit(title, title.get_rect(center=(SW // 2, 150)))
 
-        score_txt = UI_FONT.render(f"{winner_name}'s Length: {winner_score}", True, "white")
-        screen.blit(score_txt, score_txt.get_rect(center=(SW // 2, 250)))
+        # Text scor
+        score_txt = UI_FONT.render(f"{winner_name}'s the winner, he achieved a length of: {winner_score}", True, "white")
+        score_rect = score_txt.get_rect(center=(SW // 2, 250))
+        screen.blit(score_txt, score_rect)
 
-        again = Button(None, (SW//2, 400), "PLAY AGAIN", UI_FONT, "white", "green")
-        mainmenu = Button(None, (SW//2, 500), "MAIN MENU", UI_FONT, "white", "yellow")
-        quitgame = Button(None, (SW//2, 600), "QUIT", UI_FONT, "white", "red")
+        # Buton-genome (iconiță ▶/▼)
+        arrow = "Hide Info" if show_genome else "Show Info"
+        arrow_render = font_small.render(arrow, True, "white")
+        arrow_rect = arrow_render.get_rect(midleft=(score_rect.right + 10, score_rect.centery))
+        screen.blit(arrow_render, arrow_rect)
 
-        for b in [again, mainmenu, quitgame]:
-            b.change_color(mouse_pos)
-            b.update(screen)
-
+        # Detectare click pe săgeată
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit(); sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if again.check_for_input(mouse_pos):
+                if arrow_rect.collidepoint(mouse_pos):
+                    show_genome = not show_genome
+                elif again.check_for_input(mouse_pos):
                     return "again"
                 elif mainmenu.check_for_input(mouse_pos):
                     return "menu"
                 elif quitgame.check_for_input(mouse_pos):
                     pygame.quit(); sys.exit()
 
+        # Panel gene
+        if show_genome:
+            panel_width, panel_height = 250, len(formatted_genes) * 18 + 10
+            panel_surf = pygame.Surface((panel_width, panel_height))
+            panel_surf.set_alpha(180)
+            panel_surf.fill((0, 0, 0))  # negru semi-transparent
+            for i, gene_txt in enumerate(formatted_genes):
+                g_render = font_small.render(gene_txt, True, "white")
+                panel_surf.blit(g_render, (10, i * 18))
+            screen.blit(panel_surf, (score_rect.left, score_rect.bottom + 10))
+
+        # Butoane clasice
+        again = Button(None, (SW // 2, 400), "PLAY AGAIN", UI_FONT, "white", "green")
+        mainmenu = Button(None, (SW // 2, 500), "MAIN MENU", UI_FONT, "white", "yellow")
+        quitgame = Button(None, (SW // 2, 600), "QUIT", UI_FONT, "white", "red")
+
+        for b in [again, mainmenu, quitgame]:
+            b.change_color(mouse_pos)
+            b.update(screen)
+
         pygame.display.update()
+
+
 
 
 

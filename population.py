@@ -103,10 +103,11 @@ class PopulationManager:
             print(f"[ELITE] New best score: {best_score_this_gen:.2f} (previous: {best_score_ever:.2f})")
             save_best_score(best_score_this_gen)
 
-            import json
-            elite_genes = [snake.chromosome.genes for snake, _ in scored[:config.N_ELITE]]
+            elites = [rebalance_gene_weights(snake.chromosome) for snake, _ in scored[:config.N_ELITE]]
+            elite_genes = [chrom.genes for chrom in elites]
             with open("elites.json", "w") as f:
                 json.dump(elite_genes, f, indent=2)
+
 
         else:
             print(f"[ELITE] Skipping save (score {best_score_this_gen:.2f} <= {best_score_ever:.2f})")
@@ -123,8 +124,11 @@ class PopulationManager:
 
                 # salvăm elitele modificate
                 import json
-                elite_genes = [snake.chromosome.genes for snake, _ in scored[:config.N_ELITE]]
-                elite_genes[0] = best_snake.chromosome.genes  # înlocuim primul cu cel ajustat
+                best_snake.chromosome = rebalance_gene_weights(best_snake.chromosome)
+                elites = [rebalance_gene_weights(snake.chromosome) for snake, _ in scored[:config.N_ELITE]]
+                elites[0] = best_snake.chromosome  # suprascriem primul
+                elite_genes = [chrom.genes for chrom in elites]
+
 
                 with open("elites.json", "w") as f:
                     json.dump(elite_genes, f, indent=2)
